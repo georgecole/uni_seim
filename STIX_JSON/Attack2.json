@@ -1,0 +1,147 @@
+{
+  "type": "bundle",
+  "id": "attack2",
+  "spec_version": "2.0",
+  "objects": [
+    {
+      "type": "threat-actor1",
+      "id": "threat-actor1",
+      "name": "Unknown"
+  },
+    {
+      "type": "attack-pattern",
+      "id": "attack-pattern1",
+      "name": "Sql Injection",
+	  "kill_chain_phases" : "Act on Objective "
+    },
+	 {
+      "type": "attack-pattern",
+      "id": "attack-pattern2",
+      "name": "Directory Traversal",
+	  "kill_chain_phases" : "Act on Objective "
+    },
+	 {
+      "type": "attack-pattern",
+      "id": "attack-pattern3",
+      "name": "Cross Site Scripting",
+	  "kill_chain_phases" : "Act on Objective"
+    },
+	{
+      "type": "indicator",
+      "id": "indicator1",
+      "name": "A=A 1=1 OR ;",
+      "description": "Vulnerability scanning against web proxy itself"
+    },
+	{
+      "type": "indicator",
+      "id": "indicator2",
+      "name": "<script>",
+      "description": "requests containing Script"
+    },
+	{
+      "type": "indicator",
+      "id": "indicator3",
+      "name": "%5C",
+      "description": "Requests containing %5C"
+    },
+	{
+      "type": "vulnerability",
+      "id": "vulnerability1",
+      "name": "SQL Injection",
+      "description": "Allows SQL queries taken from user input to be executed directly against database"
+    },
+	{
+      "type": "vulnerability",
+      "id": "vulnerability2",
+      "name": "Cross Site Scripting",
+      "description": "Script executed in client browser from a different source"
+    },
+	{
+      "type": "vulnerability",
+      "id": "vulnerability3",
+      "name": "Directory Traversal",
+      "description": "Allows browsing of system directories"
+    },
+    {
+      "type": "sighting",
+      "id": "sighting1",
+      "sighting_of_ref": "indicator1"
+    },
+	   {
+      "type": "sighting",
+      "id": "sighting1",
+      "sighting_of_ref": "indicator2"
+    },
+	   {
+      "type": "sighting",
+      "id": "sighting1",
+      "sighting_of_ref": "indicator3"
+    },
+	{
+      "type": "campaign",
+      "id": "campaign1",
+	  "name": "Attack Campaign",
+	  "description": "A threat actor cannot directly be associated to an attack pattern, it must form part of an associated campaign"
+    },
+	{
+		"type": "relationship",
+		"relationship_type" : "targets",
+		"source_ref" : "attack-pattern1",
+		"target_ref" : "vulnerability1"
+	},
+	{
+		"type": "relationship",
+		"relationship_type" : "targets",
+		"source_ref" : "attack-pattern2",
+		"target_ref" : "vulnerability3"
+	},
+	{
+		"type": "relationship",
+		"relationship_type" : "targets",
+		"source_ref" : "attack-pattern3",
+		"target_ref" : "vulnerability2"
+	},
+	{
+		"type": "relationship",
+		"relationship_type" : "attributed-to",
+		"source_ref" : "campaign1",
+		"target_ref" : "threat-actor1"
+	},
+	{
+		"type": "relationship",
+		"relationship_type" : "uses",
+		"source_ref" : "campaign1",
+		"target_ref" : "attack-pattern1"
+	},
+	{
+		"type": "relationship",
+		"relationship_type" : "uses",
+		"source_ref" : "campaign1",
+		"target_ref" : "attack-pattern2"
+	},
+	{
+		"type": "relationship",
+		"relationship_type" : "uses",
+		"source_ref" : "campaign1",
+		"target_ref" : "attack-pattern3"
+	},
+	{
+		"type": "relationship",
+		"relationship_type" : "indicates",
+		"source_ref" : "indicator1",
+		"target_ref" : "attack-pattern1"
+	},
+	{
+		"type": "relationship",
+		"relationship_type" : "indicates",
+		"source_ref" : "indicator2",
+		"target_ref" : "attack-pattern3"
+	},
+	{
+		"type": "relationship",
+		"relationship_type" : "indicates",
+		"source_ref" : "indicator3",
+		"target_ref" : "attack-pattern2"
+	}
+  ]
+}

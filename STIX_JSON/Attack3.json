@@ -1,0 +1,78 @@
+{
+  "type": "bundle",
+  "id": "attack3",
+  "spec_version": "2.0",
+  "objects": [
+    {
+      "type": "threat-actor1",
+      "id": "threat-actor1",
+      "name": "Unknown"
+    },
+    {
+      "type": "attack-pattern",
+      "id": "attack-pattern1",
+      "name": "UDP Flooding (DoS)",
+	  "kill_chain_phases" : "Act On Objective"
+    },
+	{
+      "type": "indicator",
+      "id": "indicator1",
+      "name": ":443",
+      "description": "Requests aimed at port 443"
+    },
+	{
+      "type": "vulnerability",
+      "id": "vulnerability1",
+      "name": "CVE-2009-3555",
+      "description": "CVE-2009-3555"
+    },
+    {
+      "type": "sighting",
+      "id": "sighting1",
+      "sighting_of_ref": "indicator1"
+    },
+	{
+      "type": "campaign",
+      "id": "campaign1",
+	  "name": "Attack Campaign",
+	  "description": "A threat actor cannot directly be associated to an attack pattern, it must form part of an associated campaign"
+    },
+	{
+      "type": "identity",
+      "id": "identity1",
+	  "name": "ICQ",
+	  "description": "Cross Platform Messaging Service"
+    },
+	
+	{
+		"type": "relationship",
+		"relationship_type" : "targets",
+		"source_ref" : "attack-pattern1",
+		"target_ref" : "vulnerability1"
+	},
+	{
+		"type": "relationship",
+		"relationship_type" : "attributed-to",
+		"source_ref" : "campaign1",
+		"target_ref" : "threat-actor1"
+	},
+	{
+		"type": "relationship",
+		"relationship_type" : "uses",
+		"source_ref" : "campaign1",
+		"target_ref" : "attack-pattern1"
+	},
+	{
+		"type": "relationship",
+		"relationship_type" : "indicates",
+		"source_ref" : "indicator1",
+		"target_ref" : "attack-pattern1"
+	},
+	{
+		"type": "relationship",
+		"relationship_type" : "targets",
+		"source_ref" : "attack-pattern1",
+		"target_ref" : "identity1"
+	}
+  ]
+}
